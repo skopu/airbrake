@@ -53,10 +53,10 @@ module Airbrake
         context[:userAgent] = request.user_agent
 
         framework_version =
-          if defined?(::Rails)
-            "Rails/#{::Rails.version}"
-          elsif defined?(::Sinatra)
+          if defined?(::Sinatra)
             "Sinatra/#{Sinatra::VERSION}"
+          elsif defined?(::Rails)
+            "Rails/#{::Rails.version}"
           else
             "Rack.version/#{::Rack.version} Rack.release/#{::Rack.release}"
           end.freeze
