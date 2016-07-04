@@ -66,7 +66,7 @@ appraise 'rails-4.2' do
 end
 
 # Rails 5+ supports only Ruby 2.1+
-if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new('2.0')
+if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new('2.3.0')
   appraise 'rails-5.0' do
     gem 'rails', '~> 5.0.0'
     gem 'warden', '~> 1.2.6'
@@ -80,10 +80,7 @@ if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new('2.0')
 
     gem 'delayed_job_active_record', '~> 4.1.1'
 
-    if Gem::Version.new(RUBY_VERSION) < Gem::Version.new('2.0')
-      # Newer 'mime-types' doesn't support Ruby 1.9.3 anymore.
-      gem 'mime-types', '~> 3.1'
-    end
+    gem 'mime-types', '~> 3.1'
   end
 
   appraise 'rails-edge' do
