@@ -14,7 +14,7 @@ module Airbrake
         if ::Rails.version.start_with?('5.')
           # Avoid the warning about deprecated strings.
           app.config.middleware.insert_after(
-            ActiveRecord::ConnectionAdapters::ConnectionManagement,
+            ActionDispatch::DebugExceptions,
             Airbrake::Rack::Middleware
           )
         else
