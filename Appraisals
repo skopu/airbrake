@@ -67,6 +67,24 @@ end
 
 # Rails 5+ supports only Ruby 2.1+
 if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new('2.0')
+  appraise 'rails-5.0' do
+    gem 'rails', '~> 5.0.0'
+    gem 'warden', '~> 1.2.6'
+
+    gem 'activerecord-jdbcsqlite3-adapter', '~> 1.3.20', platforms: :jruby
+    gem 'sqlite3', '~> 1.3.11', platforms: [:mri, :rbx]
+
+    gem 'resque', '~> 1.26'
+    gem 'resque_spec', git: 'git@github.com:kyrylo/resque_spec.git'
+
+    gem 'delayed_job_active_record', '~> 4.1.1'
+
+    if Gem::Version.new(RUBY_VERSION) < Gem::Version.new('2.0')
+      # Newer 'mime-types' doesn't support Ruby 1.9.3 anymore.
+      gem 'mime-types', '~> 3.1'
+    end
+  end
+
   appraise 'rails-edge' do
     gem 'rails', github: 'rails/rails'
     gem 'arel', github: 'rails/arel'
